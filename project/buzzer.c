@@ -322,6 +322,24 @@ void randomSong(){
 
 }
 
+// method to play a short clip of the baby shark song
+
+void sharkSong(){
+
+  int notes[] = {C5,C5,C5,C5,0,0,D4,D4,0,0,F4,0,0,0,F4,0,F4,0,F4,0,F4,0,F4,0,F4,0,F4,0,0,0};
+
+
+
+  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
+
+    buzzer_set_period(notes[i]);
+
+    __delay_cycles(1200000);
+
+  }
+
+}
+
 
 
 // method to play a short clip of the baby shark song

@@ -74,7 +74,7 @@ void state_advance(){
 
 
 
-    randomSong();
+    sharkSong();
 
 
 
