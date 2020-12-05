@@ -18,19 +18,131 @@
 #include "stateMachine.h"
 
 
+char state;
+char switch_state_down;
+char switch_state_changed; /* effectively boolean */
+char B1, B2, B3, B4;
+
+static char switch_update_interrupt_sense()
+{
+  char p2val = P2IN;
+
+  P2IES |= (p2val & SWITCHES); // if up then sense down
+
+  P2IES &= (p2val | ~SWITCHES); // if down then sense up
+
+
+
+  return p2val;
+
+}
+
+
+
+void switch_init() // initialize switch
+
+{
+
+  P2REN |= SWITCHES;
+
+  P2IE |= SWITCHES;
+
+  P2OUT |= SWITCHES;
+
+  P2DIR &= ~SWITCHES;
+
+
+
+  switch_update_interrupt_sense();
+
+  led_update();
+
+
+
+}
+
+
+
+
+void switch_interrupt_handler()
+
+{
+
+  char p2val = switch_update_interrupt_sense();
+
+
+
+  B1 = (p2val & SW1) ? 0 : 1;
+
+  B2 = (p2val & SW2) ? 0 : 1;
+
+  B3 = (p2val & SW3) ? 0 : 1;
+
+  B4 = (p2val & SW4) ? 0 : 1;
+
+
+
+  if(B1){
+
+    switch_state_down = B1;
+
+    switch_state_changed = 1;
+
+    led_update();
+
+    nokiaSong();
+
+  }
+
+
+
+  if(B2){
+
+    switch_state_down = B2;
+
+    switch_state_changed = 2;
+
+    led_update();
+
+    sharkSong();
+
+  }
+
+  if(B3){
+
+    switch_state_down = B3;
+
+    switch_state_changed = 3;
+
+    led_update();
+
+    spongebobSong();
+
+  }
+
+  if(B4){
+
+    switch_state_down = B4;
+
+    switch_state_changed = 4;
+
+    led_update();
+
+    marioSong();
+
+  }
+
+
+
+  switch_state_changed = 1;
+  led_update();
+}
 
 
 
 
 
-char state, switch_state_down, switch_state_changed; /* effectively boolean */
-
-
-
-
-
-
-
+/*
 static char switch_update_interrupt_sense()
 
 
@@ -46,15 +158,15 @@ static char switch_update_interrupt_sense()
   /* update switch interrupt to detect changes from current buttons */
 
 
-
+/*
   P2IES |= (p2val & SWITCHES);/* if switch up, sense down */
 
-
+/*
 
   P2IES &= (p2val | ~SWITCHES);/* if switch down, sense up */
 
 
-
+/*
   return p2val;
 
 
@@ -65,110 +177,5 @@ static char switch_update_interrupt_sense()
 
 
 
+*/
 
-
-void switch_init()/* setup switch */
-
-
-
-{
-
-
-
-  P2REN |= SWITCHES;/* enables resistors for switches */
-
-
-
-  P2IE |= SWITCHES;/* enable interrupts from switches */
-
-
-
-  P2OUT |= SWITCHES;/* pull-ups for switches */
-
-
-
-  P2DIR &= ~SWITCHES;/* set switches' bits for input */
-
-
-
-  switch_update_interrupt_sense();
-
-
-
-  switch_interrupt_handler();
-
-
-
-}
-
-
-
-
-
-
-
-void switch_interrupt_handler()
-
-
-
-{
-
-
-
-  char p2val = switch_update_interrupt_sense();
-
-
-
-  if (p2val & SW1 ? 0 : 1){ //used if p2val and SW1 is true (button 1 is pressed)
-
-
-
-    state = 1;
-
-
-
-  }
-
-
-
-  else if (p2val & SW2 ? 0 : 1){ //used if p2val and SW2 is true (button 2 is pressed)
-
-
-
-    state = 2;
-
-
-
-  }
-
-
-
-  else if (p2val & SW3 ? 0 : 1){ //used if p2val and SW3 is true (button 3 is pressed)
-
-
-
-    state = 3;
-
-
-
-  }
-
-
-
-  else if (p2val & SW4 ? 0 : 1){ //used if p2val and SW4 is true (button 4 is pressed)
-
-
-
-    state = 4;
-
-
-
-  }
-
-
-
-  state_advance(); // call state advance using assigned value to state
-
-
-
-}

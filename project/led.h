@@ -22,7 +22,7 @@ void led_init();/* initialize LEDs */
 
 void led_update();/* update leds */
 
-
+/*
 
 void redLights();
 
@@ -43,7 +43,7 @@ void dimLights();
 void dimBlink();
 
 
-
+*/
 
 
 
@@ -52,7 +52,7 @@ void dimBlink();
 
 
 
-extern unsigned char leds_changed, green_led_state, red_led_state;
+extern unsigned char led_changed, green_on, red_on;
 
 
 

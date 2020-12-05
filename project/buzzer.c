@@ -258,6 +258,23 @@ void beep(){
 
   int notes[] = {A4, 0};
 
+  int i = 0;
+  while(i < sizeof(notes)){
+    int count = 0;
+    while(count < 20){
+      int count2 = 0;
+      while(count2< 30000){
+	count2++;
+      }
+      count++;
+    }
+    buzzer_set_period(notes[i]);
+		      state_advance();
+		      i++;
+  }
+}
+
+
 
 
 
@@ -268,23 +285,7 @@ void beep(){
 
 
 
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
-
-
-    buzzer_set_period(notes[i]); // call buzzer_set_period the a single note as parameter
-
-
-
-    __delay_cycles(1200000); // delay the program and wait x clock cycles
-
-
-
-  }
-
-
-
-}
+  
 
 
 
@@ -296,30 +297,22 @@ void randomSong(){
 
 
 
-  int notes[] = {E3,0,E3,0,A3,0,A4,0,G3,F4,0,E3,0,A4,0,G3,0,F4,0};
+  int notes[] = {E3,E3,A3,A4,G3,F4,E3,A4,G3,F4};
 
-
-
-
-
-
-
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
-
-
+  int i = 0;
+  while(i<sizeof(notes)){
+    int count = 0;
+    while(count<20){
+      int count2 = 0;
+      while(count2 < 30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-
-
-    __delay_cycles(1200000);
-
-
-
+    state_advance();
+    i++;
   }
-
-
-
 }
 
 // method to play a short clip of the baby shark song
@@ -328,19 +321,21 @@ void sharkSong(){
 
   int notes[] = {C5,C5,C5,C5,0,0,D4,D4,0,0,F4,0,0,0,F4,0,F4,0,F4,0,F4,0,F4,0,F4,0,F4,0,0,0};
 
-
-
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
+  int i = 0;
+  while(i< sizeof(notes)){
+    int count = 0;
+    while(count < 20){
+      int count2 = 0;
+      while (count2 < 30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-    __delay_cycles(1200000);
-
+    state_advance();
+    i++;
   }
-
 }
-
-
 
 // method to play a short clip of the baby shark song
 
@@ -352,74 +347,65 @@ void marioSong(){
 
 
 
-  int notes[] = {E4,E4,0,E4,0,C4,E4,0,G4,0,0,0,G3,0,0,0,C4,0,0,G3,0,0,E3,0,0,A3,0,B3,0,A3,0,A3,0};
+  int notes[] = {E4,E4,E4,C4,E4,G4,G3,C4,G3,E3,A3,B3,A3,A3};
 
-
-
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
-
-
+  int i = 0;
+  while(i <sizeof(notes)){
+    int count = 0;
+    while(count < 20){
+      int count2 = 0;
+      while(count2<30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-
-
-    __delay_cycles(1200000);
-
-
-
+    state_advance();
+    i++;
   }
-
-
-
 }
 
 
-
-
-
-// method to play the last part of the spongebob squarepants theme song
+// Method to play the last part of the spongebob squarepants theme song
 
 void spongebobSong(){
 
   int notes[] = {G3,0,A4,0,B3,0,A4,0,0,B4,G3,0,0,D4,G3,0};
 
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
+  int i = 0;
+  while(i <sizeof(notes)){
+    int count = 0;
+    while(count<20){
+      int count2 = 0;
+      while(count2<30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-    __delay_cycles(2000000);
-
+    state_advance();
+    i++;
   }
-
 }
-
-
-
-
-
+  
 void twinkletwinkleSong(){
 
   int notes[] = {C,C,G,G,A,A,G,F,F,E,E,D,D,C};
-
-
-
-  for(int i=0; i < sizeof(notes)/sizeof(*notes); i++){
-
-
-
+  int i =  0;
+  while(i < sizeof(notes)){
+    int count = 0;
+    while(count<20){
+      int count2 = 0;
+      while(count2<30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-
-
-    __delay_cycles(2000000);
-
+    state_advance();
+    i++;
   }
-
 }
-
-
-
 // method to play an old cellphone ring tone
 
 
@@ -429,27 +415,18 @@ void nokiaSong(){
 
 
   int notes[] = {E4,0,D4,0,F4,0,G3,0,C5,0,B3,0,D4,0,E4,0,B3,0,A4,0,C5,E4,E4,0,A4,A4,A4,0,0};
-
-
-
-
-
-
-
-  for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
-
-
-
+  int i = 0;
+  while(i < sizeof(notes)){
+    int count = 0;
+    while(count <20){
+      int count2 = 0;
+      while(count2<30000){
+	count2++;
+      }
+      count++;
+    }
     buzzer_set_period(notes[i]);
-
-
-
-    __delay_cycles(3000000);
-
-
-
+    state_advance();
+    i++;
   }
-
-
-
 }

@@ -17,7 +17,13 @@
 #include "stateMachine.h"
 
 
+unsigned char red_on = 0;
+unsigned char green_on = 0;
 
+static char redVal[] ={0,LED_RED};
+static char greenVal[] = {0, LED_GREEN};
+
+unsigned char led_changed = 0;
 
 
 
@@ -34,17 +40,25 @@ void led_init()
 
 
 
-  switch_state_changed = 1;
+  led_changed = 1;
+  led_update();
 
+}
 
+void led_update()
+{
+  if(led_changed){
+    char ledFlags= redVal[red_on] | greenVal[green_on];
 
+    P1OUT &= (0xff^LEDS) | ledFlags;
+    P1OUT |= ledFlags;
+    led_changed = 0;
+  }
 }
 
 
 
-
-
-
+/*
 
 // green blinking lights
 
@@ -118,10 +132,10 @@ void redLights(){
 
 
 
+*/
 
 
-
-
+/*
 // alternating green and red lights while delaying clock cycles
 
 void bothLights(){
@@ -173,11 +187,11 @@ void bothLights(){
 
 
 
-
+*/
 // this method is used to blink the light fast enough to make it dim
 
 
-
+/*
 void dimLights(){
 
 
@@ -209,7 +223,7 @@ void dimLights(){
 }
 
 
-
+*/
 
 
 
@@ -217,39 +231,10 @@ void dimLights(){
 // dim blinking both LEDs
 
 
-
-void dimBlink(){
-
-
-
-  for(int i = 0; i < 20; i++){
-
-
-
-    dimLights();
-
-
-
-    __delay_cycles(2000000);
-
-
-
-    P1OUT = !LED_RED;
-
-
-
-    P1OUT = !LED_GREEN;
-
-
-
-  }
-
-
-
-}
-
-
-
+/*
+void dimBlink()
+{
+  
 
 
 
@@ -265,7 +250,7 @@ void led_update(){
     char ledFlags = 0; /* by default, no LEDs on */
 
 
-
+/*
     ledFlags |= switch_state_down ? LED_RED : 0;
 
 
@@ -295,3 +280,4 @@ void led_update(){
 
 
 }
+*/
